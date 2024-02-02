@@ -34,7 +34,7 @@ export default async function RootLayout({
         <SupabaseProvider>
           <UserProvider>
             <ModalProvider/>
-        <Sidebar songs={userSongs} playlist={userPlaylist} isLoading={false}>
+        <Sidebar songs={userSongs} playlist={userPlaylist}>
           {children}
         </Sidebar>
         <Player/>
