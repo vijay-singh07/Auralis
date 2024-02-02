@@ -14,8 +14,7 @@ import usePlayer from '@/hooks/usePlayer';
 
 interface SidebarProps {
     children: React.ReactNode;
-    playlist: Playlist[];
-    isLoading: boolean; 
+    playlist: Playlist[]; 
     songs: Song[];
 }
 
@@ -23,27 +22,26 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({
     children,
-    isLoading,
     playlist,
     songs
 }) => {
     const pathname = usePathname();
+  const player = usePlayer();
 
-    const player = usePlayer();
-
-    const routes = useMemo(()=> [{
-        icon: HiHome,
-        label: 'Home',
-        active: pathname !== '/search',
-        href: '/',
+  const routes = useMemo(() => [
+    {
+      icon: HiHome,
+      label: 'Home',
+      active: pathname !== '/search',
+      href: '/'
     },
-{
-    icon: BiSearch,
-    label: 'Search',
-    href: '/search',
-    active: pathname === '/search'
-},
-], [pathname]);
+    {
+      icon: BiSearch,
+      label: 'Search',
+      href: '/search',
+      active: pathname === '/search'
+    },
+  ], [pathname]);
     
   return (
     <div className={twMerge(`
