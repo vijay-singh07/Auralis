@@ -17,16 +17,14 @@ interface SidebarProps {
     songs: Song[];
 }
 
+
+
 const Sidebar: React.FC<SidebarProps> = ({
     children,
     isLoading,
     playlist,
     songs
 }) => {
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
     const pathname = usePathname();
 
     const routes = useMemo(()=> [{
@@ -43,6 +41,10 @@ const Sidebar: React.FC<SidebarProps> = ({
 },
 ], [pathname]);
 
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+    
   return (
     <div className='flex h-full'>
         <div className='hidden md:flex
