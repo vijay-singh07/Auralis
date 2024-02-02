@@ -9,6 +9,8 @@ import SidebarItem from './SidebarItem';
 import Library from './Library';
 import { Playlist, Song } from '@/types';
 import PlaylistStore from './PlaylistStore';
+import { twMerge } from 'tailwind-merge';
+import usePlayer from '@/hooks/usePlayer';
 
 interface SidebarProps {
     children: React.ReactNode;
@@ -27,6 +29,8 @@ const Sidebar: React.FC<SidebarProps> = ({
 }) => {
     const pathname = usePathname();
 
+    const player = usePlayer();
+
     const routes = useMemo(()=> [{
         icon: HiHome,
         label: 'Home',
@@ -40,16 +44,17 @@ const Sidebar: React.FC<SidebarProps> = ({
     active: pathname === '/search'
 },
 ], [pathname]);
-
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
     
   return (
-    <div className='flex h-full'>
-        <div className='hidden md:flex
+    <div className={twMerge(`
+    flex 
+    h-full
+    `,
+    player.activeId && 'h-[calc(100%-80px)]'
+  )}>
+        <div className="hidden md:flex
         flex-col gap-y-2
-         bg-black h-full w-[300px] p-2'>
+         bg-black h-full w-[300px] p-2">
             <Box className=''>
                 <div className='flex
                 flex-col
