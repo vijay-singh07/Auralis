@@ -6,17 +6,22 @@ import { useUser } from '@/hooks/useUser';
 import { Playlist} from '@/types';
 import usePlaylistModal from '@/hooks/usePlaylistModal';
 import PlaylistItem from './PlaylistItem';
+import useOnPlaylistOpen from '@/hooks/useOnPlaylistOpen';
+import { useRouter } from "next/navigation";
 
 interface PlaylistProps{
-    playlist: Playlist[]
+    playlist: Playlist[];
 }
 
 const Playlist: React.FC<PlaylistProps> = ({
-    playlist
+    playlist,
 }) => {
-
+    const onPlaylistOpen = useOnPlaylistOpen();
     const authModal = useAuthModal();
     const playlistModal = usePlaylistModal();
+
+    const router = useRouter();
+
         const { user } = useUser();
     const onClick = () => {
         if(!user){
@@ -26,6 +31,13 @@ const Playlist: React.FC<PlaylistProps> = ({
         //todo: check subscription
         return playlistModal.onOpen();
     };
+
+    const OnClickPlaylistItem = (id: string) => {
+        router.push(`/play/${id}`);
+      // Call the onPlaylistOpen function
+      onPlaylistOpen(id);
+    }
+
 
   return (
     <div className='flex flex-col'>
@@ -60,6 +72,8 @@ const Playlist: React.FC<PlaylistProps> = ({
         '>
          {playlist.map((item)=>(
                 <PlaylistItem
+                onClick={OnClickPlaylistItem}
+                href={`play/${item.id}`}
                 key={item.id}
                 data={item}/>
             ))}

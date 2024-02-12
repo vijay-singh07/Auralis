@@ -229,7 +229,3 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
 }
  
 export default PlayerContent;
-
-function usePlaylistsModal() {
-  throw new Error("Function not implemented.");
-}

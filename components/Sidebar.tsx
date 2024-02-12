@@ -11,6 +11,7 @@ import { Playlist, Song } from '@/types';
 import PlaylistStore from './PlaylistStore';
 import { twMerge } from 'tailwind-merge';
 import usePlayer from '@/hooks/usePlayer';
+import usePlaylist from '@/hooks/usePlaylist';
 
 interface SidebarProps {
     children: React.ReactNode;
@@ -27,6 +28,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 }) => {
     const pathname = usePathname();
   const player = usePlayer();
+  const playlists = usePlaylist();
 
   const routes = useMemo(() => [
     {
@@ -48,7 +50,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     flex 
     h-full
     `,
-    player.activeId && 'h-[calc(100%-80px)]'
+    player.activeId && playlists.activeId && 'h-[calc(100%-80px)]'
   )}>
         <div className="hidden md:flex
         flex-col gap-y-2

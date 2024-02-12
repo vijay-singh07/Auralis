@@ -1,4 +1,4 @@
-import { Playlist } from "@/types";
+ import { Playlist } from "@/types";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 
 const useLoadPlaylistImage = (playlist:Playlist) => {

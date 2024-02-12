@@ -2,27 +2,30 @@
 
 import Image from "next/image";
 
-import useLoadImage from "@/hooks/useLoadImage";
 import { Playlist } from "@/types";
 import useLoadPlaylistImage from "@/hooks/useLoadPlaylistImage";
+import { useRouter } from "next/navigation";
 
 
 
 interface PlaylistItemProps {
     data: Playlist;
     onClick?: (id: string) => void;
+    href: string;
 }
 const PlaylistItem: React.FC<PlaylistItemProps> = ({
     data,
-    onClick
+    onClick,
+    href
 }) => {
     
+    const router = useRouter();
     const imageUrl = useLoadPlaylistImage(data);
 
     const handleClick = () => {
-        if(onClick) {
+        router.push(href);
+        if(onClick)
             return onClick(data.id);
-        }
     };
   return (
 
