@@ -26,7 +26,6 @@ const ProfileContent:React.FC<ProfileContentProps> = ({
     }
     const data =  useGetUserDetails(userId);
     const user = data.user;
-    const avatar_url = data.user?.avatar_url;
     const image = useLoadProfileImage(user);
 
     

@@ -12,11 +12,8 @@ import { useRouter } from "next/navigation";
 import useAddUserInfoModal from "@/hooks/useAddUserInfoModal";
 import useGetUserDetails from "@/hooks/useGetUserDetails";
 
-interface AddUserModalProps{
-  userId: string;
-};
 
-const AddUserModal:React.FC<AddUserModalProps> = ({userId}) => {
+const AddUserModal = () => {
 
   const [isLoading , setIsLoading] = useState(false);
     const addUserModal = useAddUserInfoModal();

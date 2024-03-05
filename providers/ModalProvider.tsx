@@ -1,6 +1,5 @@
 "use client";
 
-import AddUserModal from "@/components/AddUserModal";
 import AuthModal from "@/components/AuthModal";
 import Modal from "@/components/Modal";
 import PlaylistModal from "@/components/PlaylistModal";
@@ -24,7 +23,6 @@ const ModalProvider = () => {
         <UploadModal/>
         <PlaylistModal/>
         <PlaylistOptionsModal/>
-        <AddUserModal/>
         </>
     )
 }
