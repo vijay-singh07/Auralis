@@ -102,17 +102,6 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
       setVolume(0);
     }
   }
-  const authModal = useAuthModal();
-    const playlistOptionsModal = usePlaylistOptionsModal();
-        const { user } = useUser();
-  const handlePlaylistOptions = () =>{
-    if(!user){
-      return authModal.onOpen();
-  }
-
-  //todo: check subscription
-  return playlistOptionsModal.onOpen();
-  }
 
   return ( 
     <div className="grid grid-cols-2 md:grid-cols-3 h-full">
@@ -120,15 +109,6 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
           <div className="flex items-center gap-x-4">
             <MediaItem data={song} />
             <LikeButton songId={song.id} />
-            <button
-    onClick={handlePlaylistOptions}
-    className="
-
-    cursor-pointer
-    hover:opcaity-75
-    transition">
-        <IoMdAddCircleOutline size={25}/>
-        </button>
           </div>
         </div>
 

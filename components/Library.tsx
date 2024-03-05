@@ -53,20 +53,27 @@ const Library: React.FC<LibraryProps> = ({
             className= "text-neutral-400 cursor-pointer hover:text-white transition"
             />
         </div>
+        {user?(
         <div className='
         flex
         flex-col
         gap-y-2
         mt-4
         px-2
-        '>
-            {songs.map((item)=>(
+        '>{songs.length < 1 ? (
+            <p className='text-neutral-400'>No songs in library. Add some by clicking on the plus button.</p>
+          ) : (
+            songs.map((item)=>(
                 <MediaItem
                 onClick={(id: string) => onPlay(id)}
                 key={item.id}
                 data={item}/>
-            ))}
+            ))
+          )}
         </div>
+        ): (
+            <p className='px-2 text-neutral-400'>Please login to access your Library</p>
+        )}
     </div>
   )
 }

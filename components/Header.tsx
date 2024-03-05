@@ -27,10 +27,12 @@ const Header: React.FC<HeaderProps> = ({
     const supabaseClient = useSupabaseClient();
 
     const { user } = useUser();
+    const id = user?.id;
 
     const handleLogout = async() =>{
         const { error } = await supabaseClient.auth.signOut();
         router.refresh();
+        router.push('/');
         //reset any current songs
 
         if(error){
@@ -39,6 +41,12 @@ const Header: React.FC<HeaderProps> = ({
         else{
             toast.success('Logged out!');
         }
+    }
+    const handleProfile = () => {
+        if(!user){
+            authModal.onOpen();
+        }
+         router.push(`profile/${id}`)
     }
   return (
     <div className={twMerge(`h-fit
@@ -119,7 +127,7 @@ const Header: React.FC<HeaderProps> = ({
                             Logout
                         </Button>
                         <Button 
-                        onClick={() => router.push('/account')}>
+                        onClick={handleProfile}>
                             <FaUserAlt/>
                         </Button>
                     </div>

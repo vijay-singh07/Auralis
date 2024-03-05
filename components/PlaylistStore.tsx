@@ -63,6 +63,7 @@ const Playlist: React.FC<PlaylistProps> = ({
             className= "text-neutral-400 cursor-pointer hover:text-white transition"
             />
         </div>
+        {user? (
         <div className='
         flex
         flex-col
@@ -70,14 +71,22 @@ const Playlist: React.FC<PlaylistProps> = ({
         mt-4
         px-2
         '>
-         {playlist.map((item)=>(
+           
+            {playlist.length < 1 ? (
+            <p className='text-neutral-400'>No Playlists in Store. Add some by clicking on the plus button.</p>
+          ) : (
+         playlist.map((item)=>(
                 <PlaylistItem
                 onClick={OnClickPlaylistItem}
                 href={`play/${item.id}`}
                 key={item.id}
                 data={item}/>
-            ))}
+            ))
+          )}
         </div>
+        ):(
+            <p className='px-2 text-neutral-400'>Please login to access your PLaylists</p>
+        )}
     </div>
   )
 }
